@@ -10,11 +10,19 @@ public class Main {
 
         ValidateBSTIteration iteration = new ValidateBSTIteration();
         ValidateBSTRecursion recursion = new ValidateBSTRecursion();
+        ValidateBSTInOrderRecursion inOrderRecursion = new ValidateBSTInOrderRecursion();
+        ValidateBSTInOrderIteration inOrderIteration = new ValidateBSTInOrderIteration();
 
         if (iteration.isValidBST(root)) System.out.println("It is a BST");
         else System.out.println("It is not a BST");
 
         if (recursion.isValidBST(root)) System.out.println("It is a BST");
+        else System.out.println("It is not a BST");
+
+        if (inOrderRecursion.isValidBST(root)) System.out.println("It is a BST");
+        else System.out.println("It is not a BST");
+
+        if (inOrderIteration.isValidBST(root)) System.out.println("It is a BST");
         else System.out.println("It is not a BST");
     }
 }
