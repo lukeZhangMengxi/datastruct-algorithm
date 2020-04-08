@@ -12,7 +12,9 @@ public class MyTest {
     @Before
     public void init() {
         methods = new Solution[] {
-            new DivideConquer()
+            new DivideConquer(),
+            new HardDP(),
+            new GreedyVariable()
         };
     }
 
