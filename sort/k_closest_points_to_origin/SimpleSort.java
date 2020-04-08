@@ -2,8 +2,9 @@ package sort.k_closest_points_to_origin;
 
 import java.util.Arrays;
 
-public class SimpleSort {
+public class SimpleSort implements Solution {
 
+    @Override
     public int[][] kClosest(int[][] points, int k) {
         int[] dists = new int[points.length];
         for (int i=0; i<points.length; i++) {
