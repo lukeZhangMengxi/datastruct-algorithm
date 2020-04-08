@@ -16,7 +16,8 @@ public class MyTest {
     public void init() {
         methods = new Solution[] {
             new SimpleSort(),
-            new FixLengthPriorityQueue()
+            new FixLengthPriorityQueue(),
+            new QuickSort()
         };
     }
 
