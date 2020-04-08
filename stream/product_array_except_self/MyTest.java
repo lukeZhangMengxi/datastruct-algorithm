@@ -2,6 +2,8 @@ package stream.product_array_except_self;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +14,8 @@ public class MyTest {
     @Before
     public void init() {
         methods = new Solution[] {
-            new TwoSideDP()
+            new TwoSideDP(),
+            new TwoPassCumulativeProduct()
         };
     }
 
@@ -23,7 +26,7 @@ public class MyTest {
         int[] expected = new int[] {-120, -60, 40, -30, -24};
 
         for (Solution method : methods) {
-            int[] output = method.productExceptSelf(inputs);
+            int[] output = method.productExceptSelf(Arrays.copyOf(inputs, inputs.length));
 
             for (int i=0; i<inputs.length; i++) {
                 assertEquals(expected[i], output[i]);
