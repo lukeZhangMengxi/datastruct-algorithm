@@ -12,7 +12,8 @@ public class MyTest {
     @Before
     public void init() {
         methods = new Solution[] {
-            new HardDP()
+            new HardDP(),
+            new GreedyVariables()
         };
     }
 
