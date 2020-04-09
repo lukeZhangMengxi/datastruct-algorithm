@@ -13,7 +13,8 @@ public class MyTest {
     public void init() {
         methods = new Solution[] {
             new DFS(),
-            new Dijkstra()
+            new Dijkstra(),
+            new DijkstraOptimized()
         };
     }
 
