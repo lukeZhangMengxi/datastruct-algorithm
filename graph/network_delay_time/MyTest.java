@@ -12,7 +12,8 @@ public class MyTest {
     @Before
     public void init() {
         methods = new Solution[] {
-            new DFS()
+            new DFS(),
+            new Dijkstra()
         };
     }
 
