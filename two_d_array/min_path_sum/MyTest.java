@@ -12,12 +12,13 @@ public class MyTest {
     @Before
     public void init() {
         methods = new Solution[] {
-            new BruteForce()
+            new BruteForce(),
+            new TwoDDP()
         };
     }
 
     @Test
-    public void linerTestCase() {
+    public void simpleTestCase() {
 
         int[][] input = new int[][] {
             {1, 1, 1},
