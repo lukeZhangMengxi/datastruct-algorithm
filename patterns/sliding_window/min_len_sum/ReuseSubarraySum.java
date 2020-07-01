@@ -6,19 +6,20 @@ public class ReuseSubarraySum extends Solution {
     public int findMinSubArray(int s, int[] arr) throws Exception {
         isValid(s, arr);
 
-        int windowStart=0, windowEnd=0, curSum=0, rst=arr.length;
+        int windowStart=0, windowEnd=0, curSum=0, rst=arr.length+1;
         while (windowEnd < arr.length) {
             while (curSum < s && windowEnd < arr.length) {
                 curSum += arr[windowEnd++];
             }
 
             // the current windowEnd is one off
-            rst = Math.min(rst, windowEnd - windowStart);
+            if (curSum >= s)
+                rst = Math.min(rst, windowEnd - windowStart);
 
             curSum -= arr[windowStart++];
         }
 
-        return rst;
+        return rst > arr.length ? -1 : rst;
     }
     
 }

@@ -6,7 +6,7 @@ public class BruteForce extends Solution {
     public int findMinSubArray(int s, int[] arr) throws Exception {
         isValid(s, arr);
         
-        int rst = arr.length;
+        int rst = arr.length + 1;
         for (int i=0; i<arr.length; i++) {
             int curSum = 0;
             for (int j=i; j<arr.length; j++) {
@@ -16,7 +16,7 @@ public class BruteForce extends Solution {
             }
         }
         
-        return rst;
+        return rst > arr.length ? -1 : rst;
     }
     
 }

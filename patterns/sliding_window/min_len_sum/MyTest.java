@@ -30,4 +30,19 @@ public class MyTest {
         }
 
     }
+
+    @Test
+    public void noAvailableResult() throws Exception {
+
+        int[] arr = new int[] {2, 1, 5, 2, 3, 2};
+        int[] s = new int[] {999};
+        int[] expected = new int[] {-1};
+
+        for (Solution method : methods) {
+            for (int i=0; i<s.length; i++) {
+                assertEquals(expected[i], method.findMinSubArray(s[i], arr));
+            }
+        }
+
+    }
 }
