@@ -11,7 +11,8 @@ public class MyTest {
     @Before
     public void init() {
         methods = new Solution[] {
-            
+            new BruteForce(),
+            new ReuseSubarraySum()
         };
     }
 
@@ -20,7 +21,7 @@ public class MyTest {
 
         int[] arr = new int[] {2, 1, 5, 1, 3, 2};
         int[] k = new int[] {3, 2};
-        int[] expected = new int[] {9, 7};
+        int[] expected = new int[] {9, 6};
 
         for (Solution method : methods) {
             for (int i=0; i<k.length; i++) {
