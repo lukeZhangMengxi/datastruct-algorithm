@@ -9,7 +9,8 @@ public class MyTest {
     @Before
     public void init() {
         methods = new Solution[] {
-            new BruteForce()
+            new BruteForce(),
+            new ReuseSubarraySum()
         };
     }
 
