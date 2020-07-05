@@ -1,0 +1,1 @@
+On my laptop, the brute force solution would take 3 minute 50 seconds with 100% CPU to finsih the junit big input case. We want something better.
