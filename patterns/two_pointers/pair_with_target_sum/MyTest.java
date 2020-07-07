@@ -12,7 +12,8 @@ public class MyTest {
     public void init() {
         methods = new Solution[] {
             new BruteForce(),
-            new SqueezeSortedArray()
+            new SqueezeSortedArray(),
+            new HashTheWantedPart()
         };
     }
 
