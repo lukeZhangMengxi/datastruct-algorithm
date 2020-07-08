@@ -30,14 +30,5 @@ public class BruteForce extends Solution {
 
         return rst;
     }
-
-    private String encode(int a, int b, int c) {
-        return a + "#" + b + "#" + c;
-    }
-
-    private List<Integer> decode(String str) {
-        String[] tmp = str.split("#");
-        return Arrays.asList(Integer.valueOf(tmp[0]), Integer.valueOf(tmp[1]), Integer.valueOf(tmp[2]));
-    }
     
 }
