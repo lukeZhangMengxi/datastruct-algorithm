@@ -16,17 +16,21 @@ public class BFS extends Solution {
             private static final long serialVersionUID = 1L;
             { this.add(root); }
         };
+        boolean rightToLeft = true;
         while (q.size() > 0) {
-            List<Integer> buf = new ArrayList<>();
+            List<Integer> buf = new LinkedList<>();
 
             int levelSize = q.size();
             while (levelSize-- > 0) {
                 TreeNode cur = q.poll();
-                buf.add(cur.val);
+                if (rightToLeft) buf.add(0, cur.val);
+                else buf.add(cur.val);
+
                 if (cur.left != null) q.add(cur.left);
                 if (cur.right != null) q.add(cur.right);
             }
             rst.add(buf);
+            rightToLeft = !rightToLeft;
         }
 
         return rst;

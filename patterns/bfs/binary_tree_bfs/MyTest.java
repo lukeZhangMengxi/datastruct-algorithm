@@ -40,7 +40,7 @@ public class MyTest {
         List<List<Integer>> expected = Arrays.asList(
             Arrays.asList(1),
             Arrays.asList(2, 3),
-            Arrays.asList(4, 5, 6, 7)
+            Arrays.asList(7, 6, 5, 4)
         );
         
         for (Solution method: methods) {
