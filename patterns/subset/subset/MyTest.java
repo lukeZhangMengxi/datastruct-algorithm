@@ -56,16 +56,40 @@ public class MyTest {
                 )
             ),
             new TestCase(
-                new int[] {1, 5, 3},
+                new int[] {1, 3, 5},
                 Arrays.asList(
                     Arrays.asList(),
                     Arrays.asList(1),
-                    Arrays.asList(5),
-                    Arrays.asList(1, 5),
                     Arrays.asList(3),
                     Arrays.asList(1, 3),
-                    Arrays.asList(5, 3),
-                    Arrays.asList(1, 5, 3)
+                    Arrays.asList(5),
+                    Arrays.asList(1, 5),
+                    Arrays.asList(3, 5),
+                    Arrays.asList(1, 3, 5)
+                )
+            )
+        };
+
+        for (Solution m: methods) {
+            for (TestCase t: cases) {
+                assert(t.equalToExpected(m.findSubsets(t.input)));
+            }
+        }
+
+    }
+
+    @Test
+    public void duplicateTestCase() throws Exception {
+        TestCase[] cases = new TestCase[] {
+            new TestCase(
+                new int[] {1, 3, 3},
+                Arrays.asList(
+                    Arrays.asList(),
+                    Arrays.asList(1),
+                    Arrays.asList(3),
+                    Arrays.asList(1, 3),
+                    Arrays.asList(3, 3),
+                    Arrays.asList(1, 3, 3)
                 )
             )
         };
