@@ -1,4 +1,4 @@
-package patterns.subset.str_permutation;
+package patterns.subset.str_case_permutation;
 
 
 import java.util.Arrays;
