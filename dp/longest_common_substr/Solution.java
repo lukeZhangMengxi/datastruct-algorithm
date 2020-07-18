@@ -61,3 +61,28 @@ class Memoization implements Solution {
     }
 
 }
+
+class Tabulation implements Solution {
+
+    private int[][] dp;
+
+    @Override
+    public int getMaxCommonSubstrLen(String a, String b) {
+        dp = new int[a.length()+1][b.length()+1];
+
+        int rst = 0;
+        for (int i=1; i<dp.length; i++) {
+            for (int j=1; j<dp[0].length; j++) {
+                if (a.charAt(i-1) == b.charAt(j-1)) {
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                } else {
+                    dp[i][j] = 0;
+                }
+                rst = Math.max(rst, dp[i][j]);
+            }
+        }
+
+        return rst;
+    }
+
+}

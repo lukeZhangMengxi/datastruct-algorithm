@@ -12,8 +12,9 @@ public class MyTest {
     @Before
     public void init() {
         solutions = new Solution[] {
-            new Recursion(),
-            new Memoization()
+            // new Recursion(),
+            // new Memoization(),
+            new Tabulation()
         };
     }
     
