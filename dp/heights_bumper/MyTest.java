@@ -2,55 +2,23 @@ package dp.heights_bumper;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.AssumptionViolatedException;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.Stopwatch;
-import org.junit.runner.Description;
+
+import lib.UnitTestStopWatch;
 
 
-public class MyTest {
+public class MyTest extends UnitTestStopWatch {
     
     Solution[] solutions;
 
     @Before
     public void init() {
         solutions = new Solution[] {
-            new Recursion()
-            // new Memoization()
+            // new Recursion()
+            new Memoization()
         };
     }
-
-    @Rule
-    public final Stopwatch stopwatch = new Stopwatch() {
-        protected void succeeded(long nanos, Description description) {
-            System.out.println(description.getMethodName() + " succeeded, time taken " + nanos);
-        }
- 
-        /**
-         * Invoked when a test fails
-         */
-        protected void failed(long nanos, Throwable e, Description description) {
-            System.out.println(description.getMethodName() + " failed, time taken " + nanos);
-        }
- 
-        /**
-         * Invoked when a test is skipped due to a failed assumption.
-         */
-        protected void skipped(long nanos, AssumptionViolatedException e,
-                Description description) {
-            System.out.println(description.getMethodName() + " skipped, time taken " + nanos);
-        }
- 
-        /**
-         * Invoked when a test method finishes (whether passing or failing)
-         */
-        protected void finished(long nanos, Description description) {
-            System.out.println(description.getMethodName() + " finished, time taken " + nanos);
-        }
- 
-    };
 
     @Test
     public void simpleTestCase() {
