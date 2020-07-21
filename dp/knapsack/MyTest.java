@@ -5,15 +5,17 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MyTest {
+import lib.UnitTestStopWatch;
+
+public class MyTest extends UnitTestStopWatch {
 
     private Solution[] solutions;
 
     @Before
     public void init() {
         solutions = new Solution[] {
-            new Recursion(),
-            new Memoization()
+            new Recursion()
+            // new Memoization()
         };
     }
     
