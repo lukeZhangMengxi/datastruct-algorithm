@@ -48,8 +48,8 @@ class Recursion implements Solution {
 
 class Memoization implements Solution {
 
-    private int recursion(int[] heights, int i, int lastHeightIdx, boolean increasing, int removed, int[][][] dp) {
-        if (i == heights.length) return removed;
+    private int recursion(int[] heights, int i, int lastHeightIdx, boolean increasing, int[][][] dp) {
+        if (i == heights.length) return 0;
         int lastHeight = Integer.MIN_VALUE;
         if (lastHeightIdx != -1 && dp[increasing?1:0][i][lastHeightIdx] != -1) return dp[increasing?1:0][i][lastHeightIdx];
         if (lastHeightIdx != -1) lastHeight = heights[lastHeightIdx];
@@ -58,31 +58,31 @@ class Memoization implements Solution {
         if (increasing) {   // Expecting increasing
             if (heights[i] > lastHeight) {  // Actually increasing
                 rst = Math.min(
-                    recursion(heights, i+1, i, true, removed, dp),
-                    recursion(heights, i+1, lastHeightIdx, true, removed+1, dp)
+                    recursion(heights, i+1, i, true, dp),
+                    recursion(heights, i+1, lastHeightIdx, true, dp) + 1
                 );
             } else if (heights[i] == lastHeight) {    // Actually equal
-                rst = recursion(heights, i+1, lastHeightIdx, true, removed+1, dp);
+                rst = recursion(heights, i+1, lastHeightIdx, true, dp) + 1;
             } else {    // Actually decreasing
                 rst = Math.min(
-                    recursion(heights, i+1, i, false, removed, dp),
-                    recursion(heights, i+1, lastHeightIdx, true, removed+1, dp)
+                    recursion(heights, i+1, i, false, dp),
+                    recursion(heights, i+1, lastHeightIdx, true, dp) + 1
                 );
             }
         } else {    // Expecting decreasing
             // Acutalling not increasing, has to remove/skip it
-            if (heights[i] >= lastHeight) rst = recursion(heights, i+1, lastHeightIdx, false, removed+1, dp);
+            if (heights[i] >= lastHeight) rst = recursion(heights, i+1, lastHeightIdx, false, dp) + 1;
             else {
                 // Actually decreasing
                 rst =  Math.min(
-                    recursion(heights, i+1, i, false, removed, dp),
-                    recursion(heights, i+1, lastHeightIdx, false, removed+1, dp)
+                    recursion(heights, i+1, i, false, dp),
+                    recursion(heights, i+1, lastHeightIdx, false, dp) + 1
                 );
             }
         }
 
         if (lastHeightIdx != -1) {
-            dp[increasing?1:0][i][lastHeightIdx] = Math.min(rst, dp[increasing?1:0][i][lastHeightIdx]);
+            dp[increasing?1:0][i][lastHeightIdx] = rst;
         }
         return rst;
     }
@@ -92,7 +92,7 @@ class Memoization implements Solution {
         int[][][] dp = new int[2][heights.length][heights.length];
         for (int[][] rr: dp) for (int[] r: rr) Arrays.fill(r, -1);
         
-        int rst = recursion(heights, 0, -1, true, 0, dp);
+        int rst = recursion(heights, 0, -1, true, dp);
         return rst;
     }
 

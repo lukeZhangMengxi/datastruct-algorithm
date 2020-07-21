@@ -10,3 +10,8 @@ N位同学站成一排，音乐老师要请其中的(N-K)位同学出列，使�
 
 
 注意不允许改变队列元素的先后顺序
+
+## Runtime result
+Input size of 40:
+- Recursion:     9,674,541,817 ns
+- Memoization:       1,346,208 ns
