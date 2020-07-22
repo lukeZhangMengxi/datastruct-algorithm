@@ -101,3 +101,57 @@ class SmarterMemoization implements Solution {
     }
 
 }
+
+class Tabulation implements Solution {
+
+    @Override
+    public boolean canPartition(int[] nums) {
+        if (nums.length == 0) return false;
+
+        int sum = 0;
+        for (int v: nums) sum += v;
+        if (sum%2 != 0) return false;
+
+        sum /= 2;
+
+        boolean[][] dp = new boolean[nums.length][sum+1];
+        for (int i=0; i<nums.length; i++) dp[i][0] = true;
+
+        for (int i=1; i<nums.length; i++) {
+            for (int s=1; s<=sum; s++) {
+                if (dp[i-1][s]) dp[i][s] = true;
+                else if (s >= nums[i]) dp[i][s] = dp[i-1][s-nums[i]];
+            }
+        }
+        
+        return dp[nums.length-1][sum];
+    }
+
+}
+
+class SmartTabulation implements Solution {
+
+    @Override
+    public boolean canPartition(int[] nums) {
+        if (nums.length == 0) return false;
+
+        int sum = 0;
+        for (int v: nums) sum += v;
+        if (sum%2 != 0) return false;
+
+        sum /= 2;
+
+        boolean[][] dp = new boolean[2][sum+1];
+        for (int i=0; i<nums.length; i++) dp[i%2][0] = true;
+
+        for (int i=1; i<nums.length; i++) {
+            for (int s=1; s<=sum; s++) {
+                if (dp[(i+1)%2][s]) dp[i%2][s] = true;
+                else if (s >= nums[i]) dp[i%2][s] = dp[(i+1)%2][s-nums[i]];
+            }
+        }
+        
+        return dp[(nums.length-1)%2][sum];
+    }
+
+}
