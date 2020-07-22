@@ -82,3 +82,28 @@ class Tabulation implements Solution {
     }
 
 }
+
+class SpaceReducedTabulation implements Solution {
+
+    @Override
+    public int maxProfit(int[] weights, int[] prices, int capacity) {
+        int[] last = new int[capacity+1];
+        int[] dp = new int[capacity+1];
+
+        for (int i=0; i<capacity+1; i++)
+            if (i >= weights[0]) last[i] = prices[0];
+        
+        for (int i=1; i<weights.length; i++) {
+            for (int cap=1; cap<capacity+1; cap++) {
+                int profit1 = last[cap];
+                int profit2 = (cap - weights[i] >= 0) ? prices[i] + last[cap - weights[i]] : 0;
+                dp[cap] = Math.max(profit1, profit2);
+            }
+
+            System.arraycopy(dp, 0, last, 0, dp.length);
+        }
+
+        return dp[capacity];
+    }
+
+}

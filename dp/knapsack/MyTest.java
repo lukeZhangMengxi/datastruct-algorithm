@@ -15,8 +15,9 @@ public class MyTest extends UnitTestStopWatch {
     public void init() {
         solutions = new Solution[] {
             // new Recursion()
-            new Memoization()
+            // new Memoization()
             // new Tabulation()
+            new SpaceReducedTabulation()
         };
     }
     
