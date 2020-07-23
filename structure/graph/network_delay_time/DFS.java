@@ -43,6 +43,7 @@ public class DFS implements Solution {
             }
         }
 
+        @SuppressWarnings("serial")
         public Map<Integer, Integer> getNodesEarliestReachTime(int numOfNodes, int node, int time) {
             nodeToTime = new HashMap<Integer, Integer>() {{
                 for (int i=1; i<=numOfNodes; i++)

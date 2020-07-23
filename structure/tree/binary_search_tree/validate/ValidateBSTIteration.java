@@ -14,6 +14,7 @@ public class ValidateBSTIteration {
     }
     private LinkedList<Context> stack;
 
+    @SuppressWarnings("serial")
     public boolean isValidBST(TreeNode root) {
         if (root == null) return false;
 

@@ -65,6 +65,7 @@ public class Dijkstra implements Solution {
             }
         }
 
+        @SuppressWarnings("serial")
         public Map<Integer, Integer> getNodesEarliestReachTime(int numOfNodes, int originNode, int time) {
             nodeToTime = new HashMap<Integer, Integer>() {{
                 for (int i=1; i<=numOfNodes; i++)

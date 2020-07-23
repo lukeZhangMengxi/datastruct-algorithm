@@ -32,6 +32,7 @@ public class CriticalConnection {
         return uf.size == 1;
     }
 
+    @SuppressWarnings("serial")
     public static void main(String[] args) {
         List<List<Integer>> edges = new ArrayList<List<Integer>>() {{
             this.add(new ArrayList<Integer>(Arrays.asList(0, 1)));

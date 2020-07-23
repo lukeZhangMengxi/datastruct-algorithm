@@ -22,6 +22,7 @@ public class MyTest {
     }
 
     @Test
+    @SuppressWarnings("serial")
     public void linerTestCase() {
 
         int[][] input = new int[][] {
