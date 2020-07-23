@@ -1,7 +1,9 @@
 package patterns.top_k_elements.top_k_points;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.PriorityQueue;
 
 class Point {
     int x;
@@ -31,5 +33,24 @@ class Point {
 interface Solution {
     
     List<Point> findClosestPoints(Point[] points, int k);
+
+}
+
+class PriorityQ implements Solution {
+
+    @Override
+    public List<Point> findClosestPoints(Point[] points, int k) {
+        PriorityQueue<Point> q = new PriorityQueue<>(
+            k+1,
+            (a, b) -> b.distFromOrigin() - a.distFromOrigin()
+        );
+
+        for (Point p: points) {
+            q.add(p);
+            if (q.size() > k) q.poll();
+        }
+
+        return new ArrayList<>(q);
+    }
 
 }
