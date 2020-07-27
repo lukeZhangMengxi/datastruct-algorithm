@@ -20,7 +20,8 @@ public class MyTest {
     @Before
     public void init() {
         solutions = new Solution[] {
-            new TopoSort()
+            // new GreedyDFS()
+            new InDegreeCounter()
         };
     }
 
