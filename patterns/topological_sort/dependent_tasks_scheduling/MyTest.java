@@ -19,7 +19,8 @@ public class MyTest {
     @Before
     public void init() {
         solutions = new Solution[] {
-            new GreedyDFS()
+            // new GreedyDFS()
+            new InDegreeCountBFS()
         };
     }
 
