@@ -1,4 +1,4 @@
-package test.five;
+package random_questions.five;
 
 interface Solution {
 

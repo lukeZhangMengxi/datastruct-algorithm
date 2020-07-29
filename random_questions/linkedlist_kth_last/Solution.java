@@ -1,4 +1,4 @@
-package test.linkedlist_kth_last;
+package random_questions.linkedlist_kth_last;
 
 class Node {
     int value;

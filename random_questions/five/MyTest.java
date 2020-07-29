@@ -1,4 +1,4 @@
-package test.five;
+package random_questions.five;
 
 import static org.junit.Assert.assertEquals;
 

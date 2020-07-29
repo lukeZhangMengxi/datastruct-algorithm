@@ -1,4 +1,4 @@
-package test.two;
+package random_questions.two;
 
 public interface Solution {
 

@@ -1,4 +1,4 @@
-package test.two;
+package random_questions.two;
 
 import java.util.ArrayList;
 import java.util.Collections;

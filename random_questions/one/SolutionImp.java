@@ -1,4 +1,4 @@
-package test.one;
+package random_questions.one;
 
 import java.util.PriorityQueue;
 

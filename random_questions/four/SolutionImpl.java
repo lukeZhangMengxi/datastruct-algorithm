@@ -1,4 +1,4 @@
-package test.four;
+package random_questions.four;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package test.grade_ordering;
+package random_questions.grade_ordering;
 
 import java.util.LinkedList;
 import java.util.List;
