@@ -10,6 +10,33 @@ interface Solution {
     List<List<Integer>> palindromePairs(String[] words);    
 }
 
+class BruteForce implements Solution {
+
+    private boolean isPalindrome(String s) {
+        if (s.length() == 0) return false;  // arguable
+
+        int l=0, r=s.length()-1;
+        while (l<r) if (s.charAt(l++) != s.charAt(r--)) return false;
+
+        return true;
+    }
+
+    @Override
+    @SuppressWarnings("serial")
+    public List<List<Integer>> palindromePairs(String[] words) {
+        
+        return new ArrayList<>() {{
+            for (int i=0; i<words.length; i++) {
+                for (int j=0; j<words.length; j++) {
+                    if (i != j && isPalindrome(words[i] + words[j]))
+                        this.add(Arrays.asList(i, j));
+                }
+            }
+        }};
+    }
+
+}
+
 class UseTrie implements Solution {
 
     class TrieNode {
