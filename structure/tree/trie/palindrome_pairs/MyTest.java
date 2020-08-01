@@ -16,7 +16,8 @@ public class MyTest {
     @Before
     public void init() {
         solutions = new Solution[] {
-            new BruteForce()
+            // new BruteForce()
+            new MapFindMatch()
         };
     }
 
@@ -40,7 +41,8 @@ public class MyTest {
         );
 
         for (Solution s: solutions) {
-            assertResult(expected, s.palindromePairs(words));
+            List<List<Integer>> o = s.palindromePairs(words);
+            assertResult(expected, o);
         }
     }
 

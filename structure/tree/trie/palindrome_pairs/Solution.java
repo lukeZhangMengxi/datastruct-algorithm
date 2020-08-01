@@ -37,6 +37,85 @@ class BruteForce implements Solution {
 
 }
 
+@SuppressWarnings("serial")
+class MapFindMatch implements Solution {
+
+    private boolean isPalindrome(String s, int l, int r) {
+        // TO-DO: Validation
+        while (l<r) {
+            if (s.charAt(l++) != s.charAt(r--)) return false;
+        }
+        return true;
+    }
+
+
+    private List<String> targetsWhenSourceOnRight(String src) {
+        
+        return new ArrayList<>() {{
+            StringBuilder buf = new StringBuilder();
+            for (int i=src.length()-1; i>=0; i--) {
+                buf.append(src.charAt(i));
+
+                if (isPalindrome(src, 0, i-1)) this.add(buf.toString());
+            }
+
+            if (isPalindrome(src, 0, src.length()-1)) this.add("");
+        }};
+    }
+
+    private List<String> targetsWhenSourceOnLeft(String src) {
+        
+        return new ArrayList<>() {{
+            StringBuilder buf = new StringBuilder();
+            for (int i=0; i<src.length(); i++) {
+                buf.append(src.charAt(i));
+
+                if (isPalindrome(src, i+1, src.length()-1)) {
+                    this.add(buf.reverse().toString());
+                    buf.reverse(); // reverse back
+                }
+            }
+
+            if (isPalindrome(src, 0, src.length()-1)) this.add("");
+        }};
+    }
+
+    @Override
+    public List<List<Integer>> palindromePairs(String[] words) {
+
+        Map<String, Integer> wordToIndex = new HashMap<>() {{
+            for (int i=0; i<words.length; i++) this.put(words[i], i);
+        }};
+
+        return new ArrayList<>() {{
+            for (int i=0; i<words.length; i++) {
+                String cur = words[i];
+
+                // Case 1: same length
+                String target = new StringBuilder(cur).reverse().toString();
+                if (wordToIndex.containsKey(target) && wordToIndex.get(target) != i) {
+                    this.add(Arrays.asList(i, wordToIndex.get(target)));
+                }
+
+                // Case 2: current string is longer and it is on the left
+                for (String t: targetsWhenSourceOnLeft(cur)) {
+                    if (t.length() != cur.length() && wordToIndex.containsKey(t) && wordToIndex.get(t) != i)
+                        this.add(Arrays.asList(i, wordToIndex.get(t)));
+                }
+
+                // Case 3: current string is longer and it is on the right
+                for (String t: targetsWhenSourceOnRight(cur)) {
+                    if (t.length() != cur.length() && wordToIndex.containsKey(t) && wordToIndex.get(t) != i)
+                        this.add(Arrays.asList(wordToIndex.get(t), i));
+                }
+
+
+            }
+        }};
+    }
+
+}
+
 class UseTrie implements Solution {
 
     class TrieNode {
