@@ -116,6 +116,7 @@ class MapFindMatch implements Solution {
 
 }
 
+@Deprecated
 class UseTrie implements Solution {
 
     class TrieNode {
