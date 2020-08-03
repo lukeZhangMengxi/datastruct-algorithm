@@ -7,7 +7,7 @@ import org.junit.Test;
 public class MyTest {
     @Test
     public void simple() {
-        Solution s = new Memoization();
+        Solution s = new DFSTabulation();
         assertEquals(
             27, 
             s.getMaxScore(
@@ -24,7 +24,7 @@ public class MyTest {
 
     @Test
     public void simple2() {
-        Solution s = new Memoization();
+        Solution s = new DFSTabulation();
         assertEquals(
             34, 
             s.getMaxScore(
@@ -38,7 +38,7 @@ public class MyTest {
 
     @Test
     public void largeInput25x100() {
-        Solution s = new Memoization();
+        Solution s = new DFSTabulation();
         assertEquals(
             1265, 
             s.getMaxScore(
@@ -85,9 +85,9 @@ public class MyTest {
 
     @Test
     public void largeInput100x100() {
-        Solution s = new Memoization();
+        Solution s = new DFSTabulation();
         assertEquals(
-            1265, 
+            3630, 
             s.getMaxScore(
                 new char[][] {
                     new char[] {'.','.','3','.','.','.','.','.','.','.','.','.','3','.','.','.','.','.','.','.','.','.','3','.','.','.','.','.','.','.','.','.','3','.','.','.','.','.','.','.','.','.','3','.','.','.','.','.','.','.','.','.','3','.','.','.','.','.','.','.','.','.','3','.','.','.','.','.','.','.','.','.','3','.','.','.','.','.','.','.','.','.','3','.','.','.','.','.','.','.','.','.','3','.','.','.','.','.','.','.'},
