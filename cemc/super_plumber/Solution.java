@@ -31,3 +31,28 @@ class DFSBacktrack implements Solution {
     }
 
 }
+
+class DFSBacktrackReducedContext implements Solution {
+
+    private int dfs(char[][] grid, int r, int c, int lastR, int lastC) {
+        if (r<0 || c <0 || r>=grid.length || c>=grid[0].length) return -1;
+        if (grid[r][c] == '*') return Integer.MIN_VALUE;
+
+        int curScore = (grid[r][c] == '.') ? 0 : Character.getNumericValue(grid[r][c]);
+        if (r == grid.length-1 && c == grid[0].length-1) return curScore;
+        
+        int maxRestScore = Integer.MIN_VALUE;
+        if (r+1 != lastR || c != lastC) maxRestScore = dfs(grid, r+1, c, r, c);
+        if (r-1 != lastR || c != lastC) maxRestScore = Math.max(maxRestScore, dfs(grid, r-1, c, r, c));
+        if (r != lastR || c+1 != lastC) maxRestScore = Math.max(maxRestScore, dfs(grid, r, c+1, r, c));
+
+        return curScore + maxRestScore;
+    }
+
+    @Override
+    public int getMaxScore(char[][] grid) {
+        
+        return dfs(grid, grid.length-1, 0, -1, -1);
+    }
+
+}
