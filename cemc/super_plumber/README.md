@@ -10,9 +10,8 @@ obstacle. He cannot occupy any location which he previously occupied - if he mov
 he cannot move down until he moves right; if he moves down he cannot move up until he
 moves right. SP collects the gold coins at locations he visits. You are to find the
 maximum possible total value of coins that SP can collect while rescuing TP.
-Input has several test cases. The first line of each test case contains m and n, both integers
-not less than 2 or greater than 100. The grid is then given as m lines with n characters
-each. An obstacle is denoted by an asterisk ('*'); a coin is denoted by a digit ('1' through
+Input has several test cases. The first line of each test case contains m and n, both integers not less than 2 or greater than 100. The grid is then given as m lines with n characters each.
+An obstacle is denoted by an asterisk ('*'); a coin is denoted by a digit ('1' through
 '9'); an empty location is denoted by a period ('.').
 It is always possible for SP to rescue TP. A line containing 0 0 follows the last test case.
 Output one line for each test case giving the amount of money that SP can collect. The
