@@ -1,4 +1,4 @@
-package java_lang_interface.map.linked_hashmap.first_unique_char;
+package java_lang_interface.map.LinkedHashMap.first_unique_char;
 
 import java.util.HashSet;
 import java.util.LinkedHashMap;
