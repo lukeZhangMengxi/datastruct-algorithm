@@ -12,7 +12,8 @@ public class MyTest {
     @Before
     public void intit() {
         solutions = new Solution[] {
-            new UsePriorityQueue()
+            // new UsePriorityQueue()
+            new DivideConquerMerge()
         };
     }
 

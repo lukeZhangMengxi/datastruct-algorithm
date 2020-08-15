@@ -61,3 +61,45 @@ class UsePriorityQueue implements Solution {
     }
 
 }
+
+class DivideConquerMerge implements Solution {
+
+    private ListNode m2(ListNode a, ListNode b) {
+        ListNode idle = new ListNode(-1);
+        ListNode cur = idle;
+
+        while (a != null && b != null) {
+            if (a.value < b.value) {
+                cur.next = a;
+                a = a.next;
+            } else {
+                cur.next = b;
+                b = b.next;
+            }
+            cur = cur.next;
+        }
+
+        // Expecting exactly one or both of the two to be null
+        if (a != null) cur.next = a;
+        if (b != null) cur.next = b;
+
+        return idle.next;
+    }
+
+    @Override
+    public ListNode merge(ListNode[] lists) {
+        if (lists.length == 0) return null;
+        if (lists.length == 1) return lists[0];
+
+        int indexInterval = 1;
+        while (indexInterval < lists.length) {
+            for (int i=0; i+indexInterval<lists.length; i+=(indexInterval+1)) {
+                lists[i] = m2(lists[i], lists[i+indexInterval]);
+            }
+            indexInterval *= 2;
+        }
+        
+        return lists[0];
+    }
+
+}
