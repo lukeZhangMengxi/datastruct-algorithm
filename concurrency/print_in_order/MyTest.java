@@ -5,7 +5,8 @@ import org.junit.Test;
 public class MyTest {
     @Test
     public void simple() throws InterruptedException {
-        Solution s = new UsePairSynchronization();
+        // Solution s = new UsePairSynchronization();
+        Solution s = new UseMonitorLock();
         s.init();
 
         Thread one = new Thread(new Runnable() {
@@ -50,6 +51,10 @@ public class MyTest {
         two.start();
         three.start();
         one.start();
+
+        one.join(1,000);
+        two.join(1,000);
+        three.join(1,000);
         
     }
 }
