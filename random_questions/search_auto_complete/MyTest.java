@@ -19,42 +19,42 @@ public class MyTest {
         );
 
         List<String> a = s.input('i');
-        TestUtils.assertListEquals(
+        TestUtils.assertStringListEquals(
             Arrays.asList("i love you", "island", "i love leetcode"), 
             a
         );
 
-        TestUtils.assertListEquals(
+        TestUtils.assertStringListEquals(
             Arrays.asList("i love you", "i love leetcode"), 
             s.input(' ')
         );
 
-        TestUtils.assertListEquals(
+        TestUtils.assertStringListEquals(
             Arrays.asList(), 
             s.input('a')
         );
 
-        TestUtils.assertListEquals(
+        TestUtils.assertStringListEquals(
             Arrays.asList(), 
             s.input('#')
         );
 
-        TestUtils.assertListEquals(
+        TestUtils.assertStringListEquals(
             Arrays.asList("i love you", "island", "i love leetcode"), 
             s.input('i')
         );
 
-        TestUtils.assertListEquals(
+        TestUtils.assertStringListEquals(
             Arrays.asList("i love you", "i love leetcode", "i a"), 
             s.input(' ')
         );
 
-        TestUtils.assertListEquals(
+        TestUtils.assertStringListEquals(
             Arrays.asList("i a"), 
             s.input('a')
         );
 
-        TestUtils.assertListEquals(
+        TestUtils.assertStringListEquals(
             Arrays.asList(), 
             s.input('#')
         );

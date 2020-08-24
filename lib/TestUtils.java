@@ -7,7 +7,7 @@ import java.util.List;
 
 public class TestUtils {
 
-    public static void assertListEquals(List<String> a, List<String> b) {
+    public static void assertStringListEquals(List<String> a, List<String> b) {
         assertEquals(a.size(), b.size());
         
         Collections.sort(a);
