@@ -16,7 +16,7 @@ public class MyTest extends MyUnitTests {
     int[] input1000, input26004;
     int expected1000, expected26004;
 
-    Solution BRUTE_FORCE, MEMOIZATION;
+    Solution BRUTE_FORCE, MEMOIZATION, TABULATION;
 
     @Before
     public void init() throws FileNotFoundException {
@@ -29,11 +29,12 @@ public class MyTest extends MyUnitTests {
 
         BRUTE_FORCE = new BruteForceDFS();
         MEMOIZATION = new Memoization();
+        TABULATION = new Tabulation();
     }
 
     @Test
     public void simple() {
-        for (Solution s: Arrays.asList(BRUTE_FORCE, MEMOIZATION)) {
+        for (Solution s: Arrays.asList(BRUTE_FORCE, MEMOIZATION, TABULATION)) {
             assertEquals(7, s.maxProfit(new int[] {7,1,5,3,6,4}));
             assertEquals(4, s.maxProfit(new int[] {1,2,3,4,5}));
             assertEquals(0, s.maxProfit(new int[] {7,6,4,3,1}));
@@ -53,6 +54,11 @@ public class MyTest extends MyUnitTests {
     @Test(expected = StackOverflowError.class)
     public void memoizationStackOverflowInput26004() {
         MEMOIZATION.maxProfit(input26004);
+    }
+
+    @Test(timeout = 10000)
+    public void tabulationInput26004() {
+        assertEquals(4, TABULATION.maxProfit(input26004));
     }
 
 }

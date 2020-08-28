@@ -7,6 +7,69 @@ interface Solution {
     int maxProfit(int[] prices);
 }
 
+
+class Tabulation implements Solution {
+
+    @Override
+    public int maxProfit(int[] prices) {
+        Map<Integer, Integer> today = new HashMap<>();
+        Map<Integer, Integer> lastday = new HashMap<>();
+
+        for (int day=0; day<prices.length; day++) {
+            today.clear();
+
+            if (lastday.isEmpty()) {
+                today.put(-1, 0);     // Not buy
+                today.put(prices[day], 0);    // Buy
+            } else {
+                for (Map.Entry<Integer, Integer> e: lastday.entrySet()) {
+                    int boughtPrice = e.getKey();
+                    int total = e.getValue();
+
+                    if (boughtPrice == -1) {
+                        // Not buy
+                        today.put(-1, Math.max( 
+                            total,
+                            today.getOrDefault(-1, Integer.MIN_VALUE)
+                        ));
+
+                        // Buy
+                        today.put(prices[day], Math.max(
+                            total,
+                            today.getOrDefault(prices[day], Integer.MIN_VALUE)
+                        ));
+                    } else {
+                        // Not sell
+                        today.put(boughtPrice, Math.max( 
+                            total,
+                            today.getOrDefault(boughtPrice, Integer.MIN_VALUE)
+                        ));
+
+                        // Sell
+                        if (prices[day] - boughtPrice > 0) {    // If making money
+                            today.put(-1, Math.max(
+                                total + prices[day] - boughtPrice,
+                                today.getOrDefault(-1, Integer.MIN_VALUE)
+                            ));  
+                        }
+                            
+                    }
+                }
+            }
+            Map<Integer, Integer> swap = lastday;
+            lastday = today;
+            today = swap;
+        }
+
+        int total = 0;
+        for (int v : lastday.values()) {
+            total = Math.max(total, v);
+        }
+        return total;
+    }
+
+}
+
 class Memoization implements Solution {
 
     String encode(int day, int boughtPrice) {
