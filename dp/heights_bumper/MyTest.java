@@ -5,10 +5,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import lib.UnitTestStopWatch;
+import lib.MyUnitTests;
 
 
-public class MyTest extends UnitTestStopWatch {
+public class MyTest extends MyUnitTests {
     
     Solution[] solutions;
 
