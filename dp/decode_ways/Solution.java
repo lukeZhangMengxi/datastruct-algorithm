@@ -3,17 +3,49 @@ package dp.decode_ways;
 import java.util.HashSet;
 import java.util.Set;
 
-interface Solution {
-    int numDecodings(String s);
-}
+abstract class Solution {
 
-class Memoization implements Solution {
+    abstract int numDecodings(String s);
 
     char convert(String s, int i, int j) {
+        if (i < j && s.charAt(i) == '0') return '#';
+
         int tmp = Integer.parseInt(s.substring(i, j+1));
         if (tmp > 0 && tmp <= 26) return (char) (tmp - 1 + 'A');
         else return '#';
     }
+}
+
+class Tabulation extends Solution {
+
+    @Override
+    public int numDecodings(String s) {
+        if (s.length() == 0) return 0;
+        int last=0, oneBeforeLast=0, cur=0;
+        char oneDigit = convert(s, 0, 0);
+        char twoDigit;
+        if (oneDigit == '#') return 0;
+        last = 1;
+
+        for (int i=1; i<s.length(); i++) {
+            oneDigit = convert(s, i, i);
+            if (oneDigit != '#') cur += last;
+
+            twoDigit = convert(s, i-1, i);
+            if (twoDigit != '#') cur += (i-2 >= 0) ? oneBeforeLast : 1;
+
+            // Rotate
+            oneBeforeLast = last;
+            last = cur;
+            cur = 0;
+        }
+
+        return last;
+    }
+
+}
+
+class Memoization extends Solution {
 
     int dfs(String s, int i, Integer[] dp) {
         if (i == s.length()) { return 1; }
@@ -46,13 +78,7 @@ class Memoization implements Solution {
 
 }
 
-class BBF implements Solution {
-
-    char convert(String s, int i, int j) {
-        int tmp = Integer.parseInt(s.substring(i, j+1));
-        if (tmp > 0 && tmp <= 26) return (char) (tmp - 1 + 'A');
-        else return '#';
-    }
+class BBF extends Solution {
 
     int dfs(String s, int i) {
         if (i == s.length()) { return 1; }
@@ -80,13 +106,7 @@ class BBF implements Solution {
 
 }
 
-class BF implements Solution {
-
-    char convert(String s, int i, int j) {
-        int tmp = Integer.parseInt(s.substring(i, j+1));
-        if (tmp > 0 && tmp <= 26) return (char) (tmp - 1 + 'A');
-        else return '#';
-    }
+class BF extends Solution {
 
     void dfs(String s, int i, Set<String> rst, StringBuilder buf) {
         if (i == s.length()) { rst.add(buf.toString()); return; }
