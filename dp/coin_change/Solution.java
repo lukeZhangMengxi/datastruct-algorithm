@@ -6,6 +6,32 @@ interface Solution {
     int coinChange(int[] coins, int amount);
 }
 
+class Tabulation implements Solution {
+
+    @Override
+    public int coinChange(int[] coins, int amount) {
+        if (amount == 0) return 0;
+
+        int[] dp = new int[amount+1];
+        for (int c: coins) { 
+            if (c < dp.length) dp[c] = 1;
+        }
+
+        for (int i=1; i<dp.length; i++) {
+            int tmp = -1;
+            for (int c: coins) {
+                if (i-c >= 0 && dp[i-c] != -1) {
+                    tmp = (tmp==-1) ? dp[i-c]+1 : Math.min(tmp, dp[i-c]+1);
+                }
+            }
+            dp[i] = tmp;
+        }
+
+        return dp[amount];
+    }
+
+}
+
 class BetterMEM implements Solution {
 
     int dfs(int[] sortedCoins, int amount, Integer[] dp) {
