@@ -27,8 +27,9 @@ class BF implements Solution {
         }};
     }
 
-    List<String> findEncodedCombinations(List<String> raw) {
-        return new ArrayList<>() {{
+    Set<String> findEncodedCombinations(List<String> raw) {
+        // A user can only contribute to a sequence once, thus use set to remove duplicates
+        return new HashSet<>() {{
             for (int i=0; i<raw.size(); i++) {
                 for (int j=i+1; j<raw.size(); j++) {
                     for (int k=j+1; k<raw.size(); k++) {
@@ -62,10 +63,8 @@ class BF implements Solution {
         // encoded_webstie_esquences -> number of users
         Map<String, Integer> sequenceToNumber = new HashMap<>() {{
             for (List<String> webs: userToSortedWebs.values()) {
-                List<String> sequences = findEncodedCombinations(webs);
-                // A user can only contribute to a sequence once, thus use set to remove duplicates
-                Set<String> set = new HashSet<String>() {{ for (String s : sequences) this.add(s); }};
-                for (String seq: set) {
+                Set<String> sequences = findEncodedCombinations(webs);
+                for (String seq: sequences) {
                     this.put(seq, this.getOrDefault(seq, 0) + 1);
                 }
             }
