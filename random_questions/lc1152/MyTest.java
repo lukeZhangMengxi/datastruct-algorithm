@@ -32,13 +32,25 @@ public class MyTest {
 
     @Test
     public void failure1() {
+        // A user can only contribute to a sequence once
         Solution s = new BF();
 
         TestUtils.assertStringListEquals(
             Arrays.asList("hibympufi","hibympufi","yljmntrclw"), 
             s.mostVisitedPattern(
                 new String[] {"h","eiy","cq","h","cq","txldsscx","cq","txldsscx","h","cq","cq"},
-                new int[] {527896567,334462937,517687281,134127993,859112386,159548699,51100299,444082139,926837079,317455832,411747930},
+                new int[] {
+                    527896567,  // h, hibympufi
+                    334462937,  // eiy, hibympufi
+                    517687281,  // cq, hibympufi
+                    134127993,  // h, hibympufi
+                    859112386,  // cq, hibympufi
+                    159548699,  // txldsscx, hibympufi
+                    51100299,  // cq, hibympufi
+                    444082139,  // txldsscx, hibympufi
+                    926837079,  // h, yljmntrclw
+                    317455832,  // cq, hibympufi
+                    411747930},  // cq, yljmntrclw
                 new String[] {"hibympufi","hibympufi","hibympufi","hibympufi","hibympufi","hibympufi","hibympufi","hibympufi","yljmntrclw","hibympufi","yljmntrclw"}
             )
         );

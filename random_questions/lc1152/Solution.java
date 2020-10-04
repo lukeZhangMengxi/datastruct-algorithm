@@ -2,8 +2,10 @@ package random_questions.lc1152;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 interface Solution {
@@ -61,7 +63,9 @@ class BF implements Solution {
         Map<String, Integer> sequenceToNumber = new HashMap<>() {{
             for (List<String> webs: userToSortedWebs.values()) {
                 List<String> sequences = findEncodedCombinations(webs);
-                for (String seq: sequences) {
+                // A user can only contribute to a sequence once, thus use set to remove duplicates
+                Set<String> set = new HashSet<String>() {{ for (String s : sequences) this.add(s); }};
+                for (String seq: set) {
                     this.put(seq, this.getOrDefault(seq, 0) + 1);
                 }
             }
