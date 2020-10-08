@@ -1,4 +1,4 @@
-package json.test;
+package tools.jackson_json.test;
 
 import static org.junit.Assert.assertEquals;
 
