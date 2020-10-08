@@ -6,6 +6,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 
@@ -16,20 +17,31 @@ public class MyTest {
     String ISSUER = "mengxi", ATTRIBUTE = "attribute", VALUE = "attribute-value";
     Algorithm ALGORITHM = Algorithm.HMAC256("secret");
 
-    JWTVerifier verifier = JWT.require(ALGORITHM).withIssuer(ISSUER).acceptLeeway(30).build();
+    JWTVerifier verifier = JWT.require(ALGORITHM).withIssuer(ISSUER).acceptLeeway(1).build();
 
     @Test
     public void createAndVerifyToken() {
         String out = JWT.create()
             .withIssuer(ISSUER)
             .withClaim(ATTRIBUTE, VALUE)
-            .withExpiresAt(new Date(System.currentTimeMillis() + (long)0.5*60*60*1000))
+            .withExpiresAt(new Date(System.currentTimeMillis() + 1*60*60*1000))
             .sign(ALGORITHM);
 
         DecodedJWT jwt = verifier.verify(out);
 
         assert(jwt.getClaim("attribute").asString().equals(VALUE));
         System.out.println(jwt.getExpiresAt());
+    }
+
+    @Test(expected = TokenExpiredException.class)
+    public void tokenExpiredWhenBeingVerified() {
+        String out = JWT.create()
+            .withIssuer(ISSUER)
+            .withClaim(ATTRIBUTE, VALUE)
+            .withExpiresAt(new Date(System.currentTimeMillis() - (long)1*60*60*1000))
+            .sign(ALGORITHM);
+
+        verifier.verify(out);
     }
 
     @Test(expected = JWTDecodeException.class)
