@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <PERSON NAME="Bob" AGE="18"/>
+    <PERSON NAME="Alice" AGE="23"/>
+    <PERSON NAME="Charlie" AGE="42"/>
+</dataset>
