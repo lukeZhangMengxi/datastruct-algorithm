@@ -5,7 +5,7 @@ import org.junit.Rule;
 import org.junit.rules.Stopwatch;
 import org.junit.runner.Description;
 
-public class MyUnitTests {
+public class MyTestWithTimer {
     @Rule
     public final Stopwatch stopwatch = new Stopwatch() {
         protected void succeeded(long nanos, Description description) {
