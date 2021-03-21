@@ -23,6 +23,7 @@ public class MyTest {
     @Test
     public void simple() throws InterruptedException {
         new Target();
-        Thread.currentThread().sleep(5000);
+        Thread.currentThread();
+        Thread.sleep(5000);
     }
 }

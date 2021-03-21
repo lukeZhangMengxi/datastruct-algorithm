@@ -1,4 +1,4 @@
-package concurrency.in_memory_cache;
+package multi_threads.concurrency.in_memory_cache;
 
 import static org.junit.Assert.assertNotEquals;
 

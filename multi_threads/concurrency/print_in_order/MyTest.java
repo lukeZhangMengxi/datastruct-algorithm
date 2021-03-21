@@ -1,4 +1,4 @@
-package concurrency.print_in_order;
+package multi_threads.concurrency.print_in_order;
 
 import org.junit.Test;
 
